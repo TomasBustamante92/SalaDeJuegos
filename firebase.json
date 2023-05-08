@@ -3,7 +3,7 @@
     "rules": "database.rules.json"
   },
   "hosting": {
-    "public": "public",
+    "public": "dist/sala-de-juegos",
     "ignore": [
       "firebase.json",
       "**/.*",
