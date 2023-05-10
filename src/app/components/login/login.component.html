@@ -1,20 +1,22 @@
 
+<div class="white">
 <div *ngIf="!ingresado; else saludar">
-<h1>Login</h1>
+    <h1>Login</h1>
 
-<br>
-<input [(ngModel)]="mail" class="form-control" placeholder="Mail"/>
-<br>
-<input [(ngModel)]="password" class="form-control" type="password" placeholder="Password"/>
-<br>
-<br>
+    <br>
+    <input [(ngModel)]="mail" class="form-control" placeholder="Mail" (ngModelChange)="resetearMensajeError()"/>
+    <br>
+    <input [(ngModel)]="password" class="form-control" type="password" placeholder="Password" (ngModelChange)="resetearMensajeError()"/>
+    <br>
+    <br>
 
-<button class="btn btn-primary" (click)="ingresarUsuario()">Login</button> 
-<br>
+    <button class="btn btn-primary" (click)="ingresarUsuario()">Login</button> 
+    <br>
+    <p style="color: red;">{{mensajeError}}</p>
 </div>
 
 <ng-template #saludar>
     
-    <h1>Hola {{nombreUsuario}}</h1>
+    <h1>Hola {{usuario.nombreUsuario}}</h1>
 </ng-template>
-
+</div>

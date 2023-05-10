@@ -14,11 +14,15 @@
         </li>
       </ul>
       <form class="d-flex">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0" *ngIf="!estaLogueado">
           <li class="nav-item">
             <a class="nav-link" href="Registro">Registrarse</a>
           </li>
           <button class="btn btn-primary" routerLink="Login"><b>Login</b></button> 
+        </ul>
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0" *ngIf="estaLogueado">
+          <p style="color: aliceblue; padding-right: 20px;">{{usuario.nombreUsuario}}</p>
+          <button class="btn btn-primary" (click)="logout()"><b>Logout</b></button> 
         </ul>
       </form>
     </div>

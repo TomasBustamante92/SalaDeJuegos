@@ -13,22 +13,61 @@ export class RegistroComponent {
   nombreUsuario = "";
   password = "";
   passwordRepetir = "";
-
+  usuarioEnBaseDeDatos = false;
+  mensajeError = "";
 
   constructor(private miServicio : ServicioUsuariosService, private router: Router){}
 
   registrarUsuario(){
 
-    if(this.password == this.passwordRepetir){
-
-      let routerAux = this.router;
-      let usuarioAux = new Usuario(this. nombreUsuario, this.mail, this.password);
-      this.miServicio.cargarUsuario(usuarioAux);
-
-      routerAux.navigateByUrl("Login", { state: {mail: this.mail, nombreUsuario: this.nombreUsuario}});
+    if(!this.estanCamposCompletos()){
+      this.mensajeError = "Complete todos los campos";
+      return null;
     }
-    else{
-      alert("no son iguales");
+    
+    this.usuarioEnBaseDeDatos = this.estaUsuarioEnBaseDeDatos();
+    if(this.usuarioEnBaseDeDatos){
+      this.mensajeError = "Este usuario ya existe en base de datos";
+      return null;
     }
+
+    if(this.password != this.passwordRepetir){
+      this.mensajeError = "Las contraseñas no son iguales";
+      return null;
+    }
+
+    let routerAux = this.router;
+    let usuarioAux = new Usuario(this. nombreUsuario, this.mail, this.password);
+    this.miServicio.cargarUsuario(usuarioAux);
+
+    routerAux.navigateByUrl("Login", { state: {usuario: usuarioAux}});
+    return null;
+  }
+
+  estaUsuarioEnBaseDeDatos(){
+
+    let retorno = false;
+
+    this.miServicio.usuarios.forEach(usuario => {
+
+      if(this.mail == usuario.mail){
+        retorno = true;
+      }
+    });
+
+    return retorno;
+  }
+
+  resetearMensajeError(){
+    this.mensajeError = "";
+  }
+
+  estanCamposCompletos(){
+
+    if(this.mail == "" || this.nombreUsuario == "" || this.password == ""){
+      return false;
+    }
+
+    return true;
   }
 }
