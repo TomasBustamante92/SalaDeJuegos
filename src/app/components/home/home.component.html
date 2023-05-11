@@ -1,8 +1,12 @@
 
-<div class="white">
+<div class="white" style="text-align: center;">
 
-    <p>home really works!</p>
+    <h1 *ngIf="!logueado">Login to play</h1>
+    
+    <div *ngIf="logueado" class="img-fluid" alt="Responsive image">
+        <img src="https://media.tenor.com/oqJo9GcbfjYAAAAi/welcome-images-server.gif" alt="Italian Trulli">
+    </div>
+
 </div>
 
-<button class="btn btn-primary" (click)="actualizar()">Otro boton groso</button> 
 <br>

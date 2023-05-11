@@ -9,10 +9,15 @@ import { ServicioUsuariosService } from 'src/app/servicio-usuarios.service';
 export class HomeComponent implements OnInit {
 
   constructor(private servicioUsuario:ServicioUsuariosService) {}
+  logueado:boolean;
 
   ngOnInit(): void {  
     this.servicioUsuario.actualizarUsuarios();
+    
+    this.servicioUsuario.estaLogueado$.subscribe(logueado => {
 
+      this.logueado = logueado;
+    })
   }
 
   actualizar(){

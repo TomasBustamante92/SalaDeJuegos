@@ -55,8 +55,8 @@ export class LoginComponent implements OnInit {
     let routerAux = this.router; 
     this.ingresado = true;
     this.usuarioServ.setUsuarioLogueado(this.usuario);
-    setTimeout(function () {
-      routerAux.navigateByUrl("");
-    }, 1500);
+    // setTimeout(function () {
+    // }, 1500);
+    routerAux.navigateByUrl("");
   }
 }
