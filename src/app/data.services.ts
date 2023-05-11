@@ -1,30 +1,33 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Usuario } from "./clases/usuario";
-import { Firestore } from "@angular/fire/firestore";
+import { doc, addDoc, collection, collectionData, Firestore, getDoc, getDocs, updateDoc, setDoc } from "@angular/fire/firestore";
+import { Observable } from "rxjs";
 
 @Injectable()
 export class DataServices{
 
-  constructor(private httpClient: HttpClient){}
+  constructor(private httpClient: HttpClient, private firestore: Firestore){}
+  col = collection(this.firestore, 'usuarios');
 
-  getUsuarios(){
-    return this.httpClient.get('https://saladejuegos-tomas-busta-5ad66-default-rtdb.firebaseio.com/usuarios.json');
+  getUsuarios(): Observable<Usuario[]>{
+    return collectionData(this.col, { idField: 'id'}) as Observable<Usuario[]>;
   }
 
-  cargarUsuario(usuarios : Usuario[]){
+  cargarUsuario(usuario:Usuario, lista:Usuario[]){
 
-    this.httpClient.put('https://saladejuegos-tomas-busta-5ad66-default-rtdb.firebaseio.com/usuarios.json', usuarios).subscribe(
-      response => console.log(response),
-      error =>  console.log("Error: " + error)
-    );
+    const documentoNuevo = doc(this.col);
+    addDoc(this.col, Object.assign({}, usuario));
   }
 
-  actualizarUsuarios(usuario:Usuario, indice:number){
-    let url = 'https://saladejuegos-tomas-busta-5ad66-default-rtdb.firebaseio.com/usuarios/ ' + indice +'.json'
-    this.httpClient.put(url, usuario).subscribe(
-      response => console.log(response),
-      error =>  console.log("Error: " + error)
-    );
+  actualizarUsuarios(usuario:Usuario){
+
+    const documento = doc(this.col, usuario.id);
+    updateDoc(documento, {
+      nombreUsuario: usuario.nombreUsuario,
+      mail: usuario.mail,
+      fechaIngreso: usuario.fechaIngreso,
+      password: usuario.password,
+    });
   }
 }

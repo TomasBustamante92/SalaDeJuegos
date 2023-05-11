@@ -1,11 +1,13 @@
-export class Usuario {
+export class Usuario implements Usuario{
     
+    id: string;
     mail: string;
     password: string;
     nombreUsuario: string;
     fechaIngreso: Date;
 
-    constructor(nombreUsuario:string, mail:string, password:string){
+    constructor(id: string, nombreUsuario:string, mail:string, password:string){
+        this.id = id;
         this.nombreUsuario = nombreUsuario;
         this.mail = mail;
         this.password = password;

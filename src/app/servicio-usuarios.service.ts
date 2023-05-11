@@ -9,8 +9,6 @@ import { Observable, Subject } from 'rxjs';
 export class ServicioUsuariosService {
 
   usuarios : Usuario[] = [];
-  // indiceUsuario$: Subject<number>;
-  indiceUsuario: number;
   usuarioLogueado$: Subject<Usuario>;
   usuarioAux: Usuario;
   estaLogueado$ : Subject<boolean>;
@@ -19,9 +17,7 @@ export class ServicioUsuariosService {
     this.estaLogueado$ = new Subject();
     this.estaLogueado$.next(false);
     this.usuarioLogueado$ = new Subject();
-    // this.indiceUsuario$ = new Subject();
   }
-
 
   getUsuarios(){
     return this.dataService.getUsuarios();
@@ -31,41 +27,31 @@ export class ServicioUsuariosService {
     this.usuarios = usuarios;
   }
 
-  cargarUsuario(usuario : Usuario){
+  cargarUsuario(usuario:Usuario){
 
-    this.usuarios.push(usuario);
-    this.dataService.cargarUsuario(this.usuarios);
+    this.dataService.cargarUsuario(usuario, this.usuarios);
   }
 
-  setUsuarioLogueado(usuario:Usuario, indice:number){
+  setUsuarioLogueado(usuario:Usuario){
     this.usuarioLogueado$.next(usuario);
-    // this.indiceUsuario$.next(indice);
-    this.indiceUsuario = indice;
     this.setEstaLogueado$(true);
     this.usuarioAux = usuario;
+    this.usuarioAux.fechaIngreso = new Date();
   }
 
   setEstaLogueado$(value:boolean){
     this.estaLogueado$.next(value);
   }
 
-  getEstaLogueado$() : Observable<boolean> {
+  getEstaLogueado$(): Observable<boolean> {
     return this.estaLogueado$;
   }
 
-  // getUsuarioIndice() : number {
-  //   // return this.indiceUsuario$;
-  //   return this.indiceUsuario;
-  // }
-  
-  getUsuarioLogueado$() : Observable<Usuario> {
+  getUsuarioLogueado$(): Observable<Usuario> {
     return this.usuarioLogueado$;
   }
 
   actualizarUsuarios(){
-
-    this.usuarioAux.nombreUsuario = 'aver';
-    console.log('Usuario: ' + this.usuarioAux.nombreUsuario + ' - Indice: ' + this.indiceUsuario);
-    this.dataService.actualizarUsuarios(this.usuarioAux, this.indiceUsuario);
+    this.dataService.actualizarUsuarios(this.usuarioAux);
   }
 }

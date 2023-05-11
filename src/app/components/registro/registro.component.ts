@@ -37,7 +37,7 @@ export class RegistroComponent {
     }
 
     let routerAux = this.router;
-    let usuarioAux = new Usuario(this. nombreUsuario, this.mail, this.password);
+    let usuarioAux = new Usuario("", this.nombreUsuario, this.mail, this.password);
     this.miServicio.cargarUsuario(usuarioAux);
 
     routerAux.navigateByUrl("Login", { state: {usuario: usuarioAux}});

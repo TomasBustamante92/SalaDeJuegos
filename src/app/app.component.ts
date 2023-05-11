@@ -14,6 +14,7 @@ export class AppComponent implements AfterViewInit, OnInit{
   usuario: Usuario;
   estaLogueado = false;
   primeraVez = true;
+  usuariosFirebase: Usuario[];
 
   ngAfterViewInit() {
       this.elementRef.nativeElement.ownerDocument
@@ -22,12 +23,22 @@ export class AppComponent implements AfterViewInit, OnInit{
 
   ngOnInit(): void {
 
-    if(this.primeraVez){
+    this.servicioUsuario.getUsuarios().subscribe(data => {
 
-      this.servicioUsuario.getUsuarios().subscribe( usuariosFirebase => {
-        this.servicioUsuario.setUsuarios(Object.values(usuariosFirebase));
-      });
-    }
+      console.log("actualiza base de datos");
+      console.log(data);
+      this.servicioUsuario.setUsuarios(data);
+
+      if(this.estaLogueado){
+        data.forEach(data => {
+          if(this.usuario.nombreUsuario == data.nombreUsuario){
+
+            this.usuario = data;
+            this.servicioUsuario.setUsuarioLogueado(data);
+          }
+        });
+      }
+    });
 
     this.servicioUsuario.getEstaLogueado$().subscribe(
       esta => {

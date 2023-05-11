@@ -12,6 +12,9 @@ import { RegistroComponent } from './components/registro/registro.component';
 import { FormsModule } from '@angular/forms';
 import { ErrorComponent } from './components/error/error.component';
 import { ServicioUsuariosService } from './servicio-usuarios.service';
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,9 @@ import { ServicioUsuariosService } from './servicio-usuarios.service';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideFirestore(() => getFirestore())
   ],
   providers: [DataServices, ServicioUsuariosService],
   bootstrap: [AppComponent]

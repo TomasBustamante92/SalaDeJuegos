@@ -10,8 +10,9 @@ export class HomeComponent implements OnInit {
 
   constructor(private servicioUsuario:ServicioUsuariosService) {}
 
-  ngOnInit(): void {
-    
+  ngOnInit(): void {  
+    this.servicioUsuario.actualizarUsuarios();
+
   }
 
   actualizar(){

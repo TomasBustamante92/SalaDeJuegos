@@ -15,7 +15,6 @@ export class LoginComponent implements OnInit {
   ingresado = false;
   mensajeError = "";
   usuario: Usuario;
-  indice: number;
 
   constructor(private usuarioServ:ServicioUsuariosService, private router: Router) {}
   
@@ -38,12 +37,12 @@ export class LoginComponent implements OnInit {
       return null;
     }
 
-    this.usuarioServ.usuarios.forEach((usuario, indice) => {
+    this.usuarioServ.usuarios.forEach((usuario) => {
 
       if(this.mail == usuario.mail && this.password == usuario.password){
-        this.usuario = new Usuario(usuario.nombreUsuario, usuario.mail, usuario.password);
+        
+        this.usuario = new Usuario(usuario.id,usuario.nombreUsuario, usuario.mail, usuario.password);
         this.nombreUsuario = usuario.nombreUsuario;
-        this.indice = indice;
         this.ingreso();
       }
     });
@@ -55,7 +54,7 @@ export class LoginComponent implements OnInit {
   ingreso(){
     let routerAux = this.router; 
     this.ingresado = true;
-    this.usuarioServ.setUsuarioLogueado(this.usuario, this.indice);
+    this.usuarioServ.setUsuarioLogueado(this.usuario);
     setTimeout(function () {
       routerAux.navigateByUrl("");
     }, 1500);
