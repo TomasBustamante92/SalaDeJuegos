@@ -15,6 +15,7 @@ import { ServicioUsuariosService } from './servicio-usuarios.service';
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+import { ChatComponent } from './components/chat/chat.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
     HomeComponent,
     QuienSoyComponent,
     RegistroComponent,
-    ErrorComponent
+    ErrorComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,

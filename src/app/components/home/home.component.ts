@@ -12,9 +12,17 @@ export class HomeComponent implements OnInit {
   logueado:boolean;
 
   ngOnInit(): void {  
+
     this.servicioUsuario.actualizarUsuarios();
     
-    this.servicioUsuario.estaLogueado$.subscribe(logueado => {
+    this.servicioUsuario.getEstaLogueado$().subscribe(logueado => {
+
+      this.logueado = logueado;
+    })
+  }
+
+  ngAfterViewInit() {
+    this.servicioUsuario.getEstaLogueado$().subscribe(logueado => {
 
       this.logueado = logueado;
     })
@@ -23,4 +31,5 @@ export class HomeComponent implements OnInit {
   actualizar(){
     this.servicioUsuario.actualizarUsuarios();
   }
+
 }

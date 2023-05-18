@@ -1,28 +1,37 @@
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark h5">
   <div class="container-fluid">
+    <img class="nav" src="https://4.bp.blogspot.com/-9wibpF5Phs0/VubnbJfiprI/AAAAAAAABYg/TVSE7O7-yGYr_gCoBlObBc6DRve90LoIw/s1600/image06.png" alt="">
+    <a class="navbar-brand" routerLink="" style="color: rgb(239,239,239)">Sala de Juegos</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-4 mb-lg-0">
-        <li class="nav-item active">
-          <a class="nav-link" href="">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="Quien-Soy">¿Quien soy?</a>
-        </li>
       </ul>
       <form class="d-flex">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0" *ngIf="!estaLogueado">
-          <li class="nav-item">
-            <a class="nav-link" href="Registro">Registrarse</a>
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item active">
+            <a class="nav-link" routerLink="">Home</a>
           </li>
-          <button class="btn btn-primary" routerLink="Login"><b>Login</b></button> 
-        </ul>
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0" *ngIf="estaLogueado">
-          <p style="color: aliceblue; padding-right: 20px;">{{usuario.nombreUsuario}}</p>
-          <button class="btn btn-primary" (click)="logout()"><b>Logout</b></button> 
+          <li class="nav-item">
+            <a class="nav-link" routerLink="Quien-Soy">¿Quien soy?</a>
+          </li>
+
+          <li class="nav-item" *ngIf="!estaLogueado">
+            <a class="nav-link" routerLink="Registro">Registrarse</a>
+          </li>
+          <button class="btn btn-primary" routerLink="Login" *ngIf="!estaLogueado"><b>Login</b></button> 
+          <li class="nav-item" *ngIf="estaLogueado">
+            <a class="nav-link" routerLink="Chat">Chat</a>
+          </li>
+          <li class="nav-item" *ngIf="estaLogueado">
+            <a class="nav-link" >|</a>
+          </li>
+          <li class="nav-item" *ngIf="estaLogueado">
+            <a class="nav-link" style="color: rgb(146,199,85);" >{{usuario.nombreUsuario}}</a>
+          </li>
+          <button class="btn btn-primary" (click)="logout()" *ngIf="estaLogueado"><b>Logout</b></button> 
         </ul>
       </form>
     </div>

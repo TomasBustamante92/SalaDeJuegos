@@ -1,12 +1,64 @@
 
 <div class="white" style="text-align: center;">
-
-    <h1 *ngIf="!logueado">Login to play</h1>
+    <div *ngIf="!logueado">
+        <img src="https://media.tenor.com/oqJo9GcbfjYAAAAi/welcome-images-server.gif" alt="Italian Trulli">
+        <h1 >Ingrese para jugar</h1>
+        <br>
+        <button class="btn btn-light botonGrande" routerLink="Login"><b>Ingresar</b></button>
+    </div>
     
     <div *ngIf="logueado" class="img-fluid" alt="Responsive image">
-        <img src="https://media.tenor.com/oqJo9GcbfjYAAAAi/welcome-images-server.gif" alt="Italian Trulli">
+        <div class="container py-3">
+            <header>
+                <div class="flex-md-row p-4 gap-4 py-md-5 align-items-center justify-content-center" style="text-align: center;">
+                    <h1 class="display-4 fw-normal">Juegos</h1>
+                </div>
+            </header>
+            
+            
+            <main>
+            <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+                <div class="col">
+                    <div class="card mb-4 rounded-3 shadow-sm text-bg-dark" style="color: black;">
+                        <div class="card-header py-3">
+                        <br>
+                        <h4 class="my-0 fw-normal">Ahorcado</h4>
+                        <br>
+                        <img class="imagen" src="https://cdn-icons-png.flaticon.com/512/3274/3274156.png">
+                        <br>
+                        <br>
+
+                        <button type="button" routerLink="Juegos/Ahorcado" class="w-100 btn btn-lg btn-primary">Jugar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card mb-4 rounded-3 shadow-sm text-bg-dark" style="color: black;">
+                        <div class="card-header py-3">               
+                        <br>             
+                        <h4 class="my-0 fw-normal">Mayor o Menor</h4>
+                        <br>
+                        <img class="imagen" src="https://media.istockphoto.com/id/1219076346/vector/playing-cards-flat.jpg?s=612x612&w=0&k=20&c=gQ3_rCIoZjwB4FzkXmiAgJaeM2hHKleEdlBB2tOsoAU=">
+                        <br>
+                        <br>
+                        <button type="button"  class="w-100 btn btn-lg btn-primary">Jugar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card mb-4 rounded-3 shadow-sm text-bg-dark" style="color: black;">
+                        <div class="card-header py-3">
+                        <h4 class="my-0 fw-normal">Proximamente</h4>
+                    
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            </main>
+            </div>
+            
+
     </div>
-
 </div>
-
 <br>

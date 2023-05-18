@@ -8,7 +8,7 @@ import { Observable, Subject } from 'rxjs';
 })
 export class ServicioUsuariosService {
 
-  usuarios : Usuario[] = [];
+  usuarios: Usuario[] = [];
   usuarioLogueado$: Subject<Usuario>;
   usuarioAux: Usuario;
   estaLogueado$ : Subject<boolean>;

@@ -24,9 +24,6 @@ export class AppComponent implements AfterViewInit, OnInit{
   ngOnInit(): void {
 
     this.servicioUsuario.getUsuarios().subscribe(data => {
-
-      console.log("actualiza base de datos");
-      console.log(data);
       this.servicioUsuario.setUsuarios(data);
 
       if(this.estaLogueado){

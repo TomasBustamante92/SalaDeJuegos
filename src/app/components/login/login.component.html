@@ -1,15 +1,29 @@
+   
 
-<div class="white">
-    <h1>Login</h1>
 
-    <br>
-    <input [(ngModel)]="mail" class="form-control" placeholder="Mail" (ngModelChange)="resetearMensajeError()"/>
-    <br>
-    <input [(ngModel)]="password" class="form-control" type="password" placeholder="Password" (ngModelChange)="resetearMensajeError()"/>
-    <br>
-    <br>
+<div class="modal modal-sheet position-static d-block bg-body-secondary p-4 py-md-5" tabindex="-1"
+   role="dialog" id="modalSignin">
+  <div class="modal-dialog"  role="document">
+    <div class="modal-content rounded-4 shadow">
+        <br>
+        <h1 style="text-align: center; color: black;">Ingresar</h1>
+        <br>
 
-    <button class="btn btn-primary" (click)="ingresarUsuario()">Login</button> 
-    <br>
-    <p style="color: red;">{{mensajeError}}</p>
+      <div class="modal-body p-5 pt-0">
+          <div class="form-floating mb-3">
+            <input [(ngModel)]="mail" type="email" class="form-control rounded-3" (ngModelChange)="resetearMensajeError()" id="floatingInput" placeholder="name@example.com">
+            <label style="color: black;" for="floatingInput">Email</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input [(ngModel)]="password" type="password" class="form-control rounded-3" id="floatingPassword" (ngModelChange)="resetearMensajeError()" placeholder="Password">
+            <label style="color: black;" for="floatingPassword">Contraseña</label>
+          </div>
+          <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" (click)="ingresarUsuario()">Login</button>
+          <br>
+          <p style="color: red;">{{mensajeError}}</p>
+      </div>
+    </div>
+  </div>
 </div>
+
+

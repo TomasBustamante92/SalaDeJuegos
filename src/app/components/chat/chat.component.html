@@ -1,0 +1,24 @@
+
+
+    
+<div class="container py-4" >
+
+<div class="p-5 mb-6 bg-body-tertiary text-bg-dark rounded-3" *ngFor="let msj of mensajes">
+    <p style="text-align: right;">{{msj.fecha}}</p>
+    <p>{{msj.autor}}</p>
+    <hr>
+    <p>{{msj.mensaje}}</p>
+</div>
+
+</div>
+
+<div class="container py-4" >
+
+    <div class="p-5 mb-6 bg-body-tertiary text-bg-dark rounded-3">
+        <input [(ngModel)]="texto" class="form-control"/>
+        <br>
+        <button class="btn btn-primary" (click)="publicarMensaje()">Publicar mensaje</button> 
+    </div>
+    
+    </div>
+

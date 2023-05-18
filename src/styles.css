@@ -11,6 +11,10 @@ html{
     background-size:cover;
 }
 
+div{
+    font-family: 'Courier New', Courier, monospace;
+}
+
 .white{
     color: azure;
 }

@@ -27,7 +27,7 @@ export class RegistroComponent {
     
     this.usuarioEnBaseDeDatos = this.estaUsuarioEnBaseDeDatos();
     if(this.usuarioEnBaseDeDatos){
-      this.mensajeError = "Este usuario ya existe en base de datos";
+      this.mensajeError = "Ya existe una cuenta con este mail";
       return null;
     }
 

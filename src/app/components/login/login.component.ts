@@ -12,7 +12,6 @@ export class LoginComponent implements OnInit {
   mail = "";
   password = "";
   nombreUsuario = "";
-  ingresado = false;
   mensajeError = "";
   usuario: Usuario;
 
@@ -53,10 +52,8 @@ export class LoginComponent implements OnInit {
 
   ingreso(){
     let routerAux = this.router; 
-    this.ingresado = true;
+    this.usuarioServ.setEstaLogueado$(true);
     this.usuarioServ.setUsuarioLogueado(this.usuario);
-    // setTimeout(function () {
-    // }, 1500);
     routerAux.navigateByUrl("");
   }
 }
