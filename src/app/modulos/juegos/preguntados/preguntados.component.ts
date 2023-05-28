@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PaisesService } from 'src/app/services/paises.service';
+import { PokemonService } from 'src/app/services/pokemon.service';
 import { SpinnerService } from 'src/app/services/spinner.service';
 declare var window: any;
 
@@ -11,12 +12,9 @@ declare var window: any;
 })
 export class PreguntadosComponent implements OnInit {
 
-  constructor(private paisesService:PaisesService, private router: Router,private spinner:SpinnerService){}
-  paises:string[] = [];
-  banderas:string[] = [];
-  banderaElegida$:string;
-  paisElegido$:string;
-  random = Math.floor(Math.random() * 100);
+  constructor(private router: Router,private spinner:SpinnerService, private pokemonService:PokemonService){}
+  pokemonNombreElegido:string;
+  pokemonFotoElegido:string;
   opciones:string[] = ["","","",""];
   formModal:any;
   popUpTitulo = "";
@@ -26,44 +24,26 @@ export class PreguntadosComponent implements OnInit {
   estaJugando = true;
   volverAJugarBool = true;
   spinerAndando = false;
+  pokemones:string[] = [];
+  pokemonesFotos:string[] = [];
 
   ngOnInit(): void {
     this.volverAJugarBool = true;
-    this.spinner.llamarSpinner();
     this.spinerAndando = true;
     this.formModal = new window.bootstrap.Modal(
       document.getElementById('colorModal')
     );
 
-    this.paisesService.getPaises$().subscribe(pais => {
-      Object.values(pais)
-      .map((curr) => {
-        this.paises.push(curr.translations.spa.common);
-        this.banderas.push(curr.flags.png);
-      })
-      this.elegirNuevoPais();
-      this.spinner.detenerSpinner();
-      this.spinerAndando = false;
-    });
-
-    setTimeout(()=>{ 
-      if(this.spinerAndando){
-        this.volverAJugarBool = false;
-        this.spinerAndando = false;
-        this.estaJugando = false;
-        this.abrirPopUp("Error 503", "No pudimos cargar los paises \nIntentelo nuevamente mas tarde");
-        this.spinner.detenerSpinner();
-      }
-    },3000);
+    this.elegirNuevoPokemon();
   }
 
-  elegirPais(pais:string){
-    if(pais == this.paisElegido$){
+  elegirPokemon(pokemon:string){
+    if(pokemon == this.pokemonNombreElegido){
       this.abrirPopUp("Correcto!", "");
       this.puntaje += 10;
     }
     else{
-      this.abrirPopUp("Incorrecto!", "era " + this.paisElegido$);
+      this.abrirPopUp("Incorrecto!", "era " + this.pokemonNombreElegido);
     }
 
     this.intentos++;
@@ -73,7 +53,7 @@ export class PreguntadosComponent implements OnInit {
       this.abrirPopUp("Ganaste!", "");
     }
     else{
-      this.elegirNuevoPais();
+      this.elegirNuevoPokemon();
     }
   }
 
@@ -81,34 +61,64 @@ export class PreguntadosComponent implements OnInit {
     this.puntaje = 0;
     this.estaJugando = true;
     this.cerrarPopUp();
-    this.elegirNuevoPais();
+    this.elegirNuevoPokemon();
   }
 
   getNumeroRandom(max:number){
     return Math.floor(Math.random() * max);
   }
 
-  elegirNuevoPais(){
-    this.random = this.getNumeroRandom(this.paises.length);
-    this.paisElegido$ = this.paises[this.random];
-    this.banderaElegida$ = this.banderas[this.random];
+  elegirNuevoPokemon(){
+    this.spinner.llamarSpinner();
+    this.pokemones = [];
+    this.pokemonesFotos = [];
+    this.pokemonNombreElegido = "";
+
+    for(let i=0 ; i<4 ; i++){
+      this.pokemonService.getPokemon$(this.getNumeroRandom(151)).subscribe(pokemon => {
+        this.pokemones.push(Object.values(pokemon)[2][0].name);
+        this.pokemonesFotos.push(Object.values(pokemon)[14].other.dream_world.front_default);
+        this.spinerAndando = false;
+        if(this.pokemonNombreElegido == ""){
+          this.pokemonNombreElegido = Object.values(pokemon)[2][0].name;
+          this.pokemonFotoElegido = Object.values(pokemon)[14].other.dream_world.front_default;
+        }
+        this.spinner.detenerSpinner();
+      });
+    }  
+    
+    let random = this.getNumeroRandom(4);
     this.opciones = ["","","",""];
-    let paisSeleccionado = false;
+    let pokemonSeleccionado = false;
 
     do{
       let posicion = this.getNumeroRandom(4);
 
       if(this.opciones[posicion] == ""){
-        if(!paisSeleccionado){
-          paisSeleccionado = true;
-          this.opciones[posicion] = this.paises[this.random];
+        if(!pokemonSeleccionado){
+          pokemonSeleccionado = true;
+          this.opciones[posicion] = this.pokemones[random];
         }
         else{
-          this.opciones[posicion] = this.paises[this.getNumeroRandom(this.paises.length)];
+          this.opciones[posicion] = this.pokemones[this.getNumeroRandom(4)];
         }
       }
       
     }while(this.opciones[0] == "" || this.opciones[1] == "" || this.opciones[2] == "" || this.opciones[3] == "") 
+
+    this.timeOut();
+  }
+
+  timeOut(){
+    setTimeout(()=>{ 
+      if(this.spinerAndando){
+        this.volverAJugarBool = false;
+        this.spinerAndando = false;
+        this.estaJugando = false;
+        this.abrirPopUp("Error", "No pudimos cargar los pokemones \nIntentelo nuevamente mas tarde");
+        this.spinner.detenerSpinner();
+      }
+    },3000);
   }
 
   abrirPopUp(titulo:string, mensaje:string){

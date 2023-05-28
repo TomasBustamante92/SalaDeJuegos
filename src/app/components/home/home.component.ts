@@ -59,7 +59,7 @@ export class HomeComponent implements OnInit {
         break;
       case "preguntados":
         this.tipoDeJuego = "Preguntados";
-        this.popUpMensaje = "Multiple choice sobre banderas de paises, cada pais adivinado brindará 10 puntos. Al llegar a 50 termina el juego";
+        this.popUpMensaje = "Multiple choice sobre pokemones, cada pokemon adivinado brindará 10 puntos. Al llegar a 50 termina el juego";
         break;
     };
 
