@@ -6,39 +6,39 @@
 
       <div class="keyboard">
       <div class="keyboard__row">
-        <div [ngClass]="{'key--letter':  !letrasUsadasArray[0].value, 'key--letter--wrong': letrasUsadasArray[0].value}" (click)="teclado('q')">Q</div>
-        <div [ngClass]="{'key--letter':  !letrasUsadasArray[1].value, 'key--letter--wrong': letrasUsadasArray[1].value}" (click)="teclado('w')">W</div>
-        <div [ngClass]="{'key--letter':  !letrasUsadasArray[2].value, 'key--letter--wrong': letrasUsadasArray[2].value}" (click)="teclado('e')">E</div>
+        <button [disabled]="letrasUsadasArray[0].value" [ngClass]="{'key--letter':  !letrasUsadasArray[0].value, 'key--letter--wrong': letrasUsadasArray[0].value}" (click)="teclado('q')">Q</button>
+        <button [disabled]="letrasUsadasArray[1].value" [ngClass]="{'key--letter':  !letrasUsadasArray[1].value, 'key--letter--wrong': letrasUsadasArray[1].value}" (click)="teclado('w')">W</button>
+        <button [disabled]="letrasUsadasArray[2].value" [ngClass]="{'key--letter':  !letrasUsadasArray[2].value, 'key--letter--wrong': letrasUsadasArray[2].value}" (click)="teclado('e')">E</button>
 
-        <div [ngClass]="{'key--letter':  !letrasUsadasArray[3].value, 'key--letter--wrong': letrasUsadasArray[3].value}" (click)="teclado('r')">R</div>
-        <div [ngClass]="{'key--letter':  !letrasUsadasArray[4].value, 'key--letter--wrong': letrasUsadasArray[4].value}" (click)="teclado('t')">T</div>
-        <div [ngClass]="{'key--letter':  !letrasUsadasArray[5].value, 'key--letter--wrong': letrasUsadasArray[5].value}" (click)="teclado('y')">Y</div>
-        <div [ngClass]="{'key--letter':  !letrasUsadasArray[6].value, 'key--letter--wrong': letrasUsadasArray[6].value}" (click)="teclado('u')">U</div>
-        <div [ngClass]="{'key--letter':  !letrasUsadasArray[7].value, 'key--letter--wrong': letrasUsadasArray[7].value}" (click)="teclado('i')">I</div>
-        <div [ngClass]="{'key--letter':  !letrasUsadasArray[8].value, 'key--letter--wrong': letrasUsadasArray[8].value}" (click)="teclado('o')">O</div>
-        <div [ngClass]="{'key--letter':  !letrasUsadasArray[9].value, 'key--letter--wrong': letrasUsadasArray[9].value}" (click)="teclado('p')">P</div> 
+        <button [disabled]="letrasUsadasArray[3].value" [ngClass]="{'key--letter':  !letrasUsadasArray[3].value, 'key--letter--wrong': letrasUsadasArray[3].value}" (click)="teclado('r')">R</button>
+        <button [disabled]="letrasUsadasArray[4].value" [ngClass]="{'key--letter':  !letrasUsadasArray[4].value, 'key--letter--wrong': letrasUsadasArray[4].value}" (click)="teclado('t')">T</button>
+        <button [disabled]="letrasUsadasArray[5].value" [ngClass]="{'key--letter':  !letrasUsadasArray[5].value, 'key--letter--wrong': letrasUsadasArray[5].value}" (click)="teclado('y')">Y</button>
+        <button [disabled]="letrasUsadasArray[6].value" [ngClass]="{'key--letter':  !letrasUsadasArray[6].value, 'key--letter--wrong': letrasUsadasArray[6].value}" (click)="teclado('u')">U</button>
+        <button [disabled]="letrasUsadasArray[7].value" [ngClass]="{'key--letter':  !letrasUsadasArray[7].value, 'key--letter--wrong': letrasUsadasArray[7].value}" (click)="teclado('i')">I</button>
+        <button [disabled]="letrasUsadasArray[8].value" [ngClass]="{'key--letter':  !letrasUsadasArray[8].value, 'key--letter--wrong': letrasUsadasArray[8].value}" (click)="teclado('o')">O</button>
+        <button [disabled]="letrasUsadasArray[9].value" [ngClass]="{'key--letter':  !letrasUsadasArray[9].value, 'key--letter--wrong': letrasUsadasArray[9].value}" (click)="teclado('p')">P</button> 
       </div>
       <div class="keyboard__row">
-        <div [ngClass]="{'key--letter':  !letrasUsadasArray[10].value, 'key--letter--wrong': letrasUsadasArray[10].value}" (click)="teclado('a')">A</div>
-        <div [ngClass]="{'key--letter':  !letrasUsadasArray[11].value, 'key--letter--wrong': letrasUsadasArray[11].value}" (click)="teclado('s')">S</div>
-        <div [ngClass]="{'key--letter':  !letrasUsadasArray[12].value, 'key--letter--wrong': letrasUsadasArray[12].value}" (click)="teclado('d')">D</div>
-        <div [ngClass]="{'key--letter':  !letrasUsadasArray[13].value, 'key--letter--wrong': letrasUsadasArray[13].value}" (click)="teclado('f')">F</div>
-        <div [ngClass]="{'key--letter':  !letrasUsadasArray[14].value, 'key--letter--wrong': letrasUsadasArray[14].value}" (click)="teclado('g')">G</div>
-        <div [ngClass]="{'key--letter':  !letrasUsadasArray[15].value, 'key--letter--wrong': letrasUsadasArray[15].value}" (click)="teclado('h')">H</div>
-        <div [ngClass]="{'key--letter':  !letrasUsadasArray[16].value, 'key--letter--wrong': letrasUsadasArray[16].value}" (click)="teclado('j')">J</div>
-        <div [ngClass]="{'key--letter':  !letrasUsadasArray[17].value, 'key--letter--wrong': letrasUsadasArray[17].value}" (click)="teclado('k')">K</div>
-        <div [ngClass]="{'key--letter':  !letrasUsadasArray[18].value, 'key--letter--wrong': letrasUsadasArray[18].value}" (click)="teclado('l')">L</div>
-        <div [ngClass]="{'key--letter':  !letrasUsadasArray[19].value, 'key--letter--wrong': letrasUsadasArray[19].value}" (click)="teclado('ñ')">Ñ</div>          
+        <button [disabled]="letrasUsadasArray[10].value" [ngClass]="{'key--letter':  !letrasUsadasArray[10].value, 'key--letter--wrong': letrasUsadasArray[10].value}" (click)="teclado('a')">A</button>
+        <button [disabled]="letrasUsadasArray[11].value" [ngClass]="{'key--letter':  !letrasUsadasArray[11].value, 'key--letter--wrong': letrasUsadasArray[11].value}" (click)="teclado('s')">S</button>
+        <button [disabled]="letrasUsadasArray[12].value" [ngClass]="{'key--letter':  !letrasUsadasArray[12].value, 'key--letter--wrong': letrasUsadasArray[12].value}" (click)="teclado('d')">D</button>
+        <button [disabled]="letrasUsadasArray[13].value" [ngClass]="{'key--letter':  !letrasUsadasArray[13].value, 'key--letter--wrong': letrasUsadasArray[13].value}" (click)="teclado('f')">F</button>
+        <button [disabled]="letrasUsadasArray[14].value" [ngClass]="{'key--letter':  !letrasUsadasArray[14].value, 'key--letter--wrong': letrasUsadasArray[14].value}" (click)="teclado('g')">G</button>
+        <button [disabled]="letrasUsadasArray[15].value" [ngClass]="{'key--letter':  !letrasUsadasArray[15].value, 'key--letter--wrong': letrasUsadasArray[15].value}" (click)="teclado('h')">H</button>
+        <button [disabled]="letrasUsadasArray[16].value" [ngClass]="{'key--letter':  !letrasUsadasArray[16].value, 'key--letter--wrong': letrasUsadasArray[16].value}" (click)="teclado('j')">J</button>
+        <button [disabled]="letrasUsadasArray[17].value" [ngClass]="{'key--letter':  !letrasUsadasArray[17].value, 'key--letter--wrong': letrasUsadasArray[17].value}" (click)="teclado('k')">K</button>
+        <button [disabled]="letrasUsadasArray[18].value" [ngClass]="{'key--letter':  !letrasUsadasArray[18].value, 'key--letter--wrong': letrasUsadasArray[18].value}" (click)="teclado('l')">L</button>
+        <button [disabled]="letrasUsadasArray[19].value" [ngClass]="{'key--letter':  !letrasUsadasArray[19].value, 'key--letter--wrong': letrasUsadasArray[19].value}" (click)="teclado('ñ')">Ñ</button>          
       </div>
     
       <div class="keyboard__row">
-        <div [ngClass]="{'key--letter':  !letrasUsadasArray[20].value, 'key--letter--wrong': letrasUsadasArray[20].value}" (click)="teclado('z')">Z</div>
-        <div [ngClass]="{'key--letter':  !letrasUsadasArray[21].value, 'key--letter--wrong': letrasUsadasArray[21].value}" (click)="teclado('x')">X</div>
-        <div [ngClass]="{'key--letter':  !letrasUsadasArray[22].value, 'key--letter--wrong': letrasUsadasArray[22].value}" (click)="teclado('c')">C</div>
-        <div [ngClass]="{'key--letter':  !letrasUsadasArray[23].value, 'key--letter--wrong': letrasUsadasArray[23].value}" (click)="teclado('v')">V</div>
-        <div [ngClass]="{'key--letter':  !letrasUsadasArray[24].value, 'key--letter--wrong': letrasUsadasArray[24].value}" (click)="teclado('b')">B</div>
-        <div [ngClass]="{'key--letter':  !letrasUsadasArray[25].value, 'key--letter--wrong': letrasUsadasArray[25].value}" (click)="teclado('n')">N</div>
-        <div [ngClass]="{'key--letter':  !letrasUsadasArray[26].value, 'key--letter--wrong': letrasUsadasArray[26].value}" (click)="teclado('m')">M</div>
+        <button [disabled]="letrasUsadasArray[20].value" [ngClass]="{'key--letter':  !letrasUsadasArray[20].value, 'key--letter--wrong': letrasUsadasArray[20].value}" (click)="teclado('z')">Z</button>
+        <button [disabled]="letrasUsadasArray[21].value" [ngClass]="{'key--letter':  !letrasUsadasArray[21].value, 'key--letter--wrong': letrasUsadasArray[21].value}" (click)="teclado('x')">X</button>
+        <button [disabled]="letrasUsadasArray[22].value" [ngClass]="{'key--letter':  !letrasUsadasArray[22].value, 'key--letter--wrong': letrasUsadasArray[22].value}" (click)="teclado('c')">C</button>
+        <button [disabled]="letrasUsadasArray[23].value" [ngClass]="{'key--letter':  !letrasUsadasArray[23].value, 'key--letter--wrong': letrasUsadasArray[23].value}" (click)="teclado('v')">V</button>
+        <button [disabled]="letrasUsadasArray[24].value" [ngClass]="{'key--letter':  !letrasUsadasArray[24].value, 'key--letter--wrong': letrasUsadasArray[24].value}" (click)="teclado('b')">B</button>
+        <button [disabled]="letrasUsadasArray[25].value" [ngClass]="{'key--letter':  !letrasUsadasArray[25].value, 'key--letter--wrong': letrasUsadasArray[25].value}" (click)="teclado('n')">N</button>
+        <button [disabled]="letrasUsadasArray[26].value" [ngClass]="{'key--letter':  !letrasUsadasArray[26].value, 'key--letter--wrong': letrasUsadasArray[26].value}" (click)="teclado('m')">M</button>
 
       </div>
     </div>

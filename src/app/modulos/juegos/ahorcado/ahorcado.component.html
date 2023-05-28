@@ -1,7 +1,10 @@
 
+<div style="text-align: right;">
+    <button class="btn btn-warning" routerLink="">Volver</button>
+</div>
+
 <div class="white" style="text-align: center;">
 
-<br>
 <img src="{{imagen}}" class="imagen">
 <br>
 
@@ -9,7 +12,6 @@
     {{palabraPantalla}}
 </h1>
 
-<app-teclado (letraPresionada)="check($event)"></app-teclado>
-<!-- <button class="btn btn-primary" *ngIf="!juegoTerminado" (click)="check()">Probar letra</button> -->
 <button class="btn btn-primary" *ngIf="juegoTerminado" (click)="volverAJugar()">Volver a Jugar</button>
+<app-teclado (letraPresionada)="check($event)"></app-teclado>
 </div>

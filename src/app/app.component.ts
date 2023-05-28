@@ -16,10 +16,13 @@ export class AppComponent implements AfterViewInit, OnInit{
   primeraVez = true;
   usuariosFirebase: Usuario[];
 
+
   ngAfterViewInit() {
-      this.elementRef.nativeElement.ownerDocument
-          .body.style.backgroundColor = "transparent";
+    this.elementRef.nativeElement.ownerDocument
+        .body.style.backgroundColor = "transparent";
+    this.estaLogueado = this.servicioUsuario.estaLogueado;
   }
+  
 
   ngOnInit(): void {
 
@@ -37,10 +40,9 @@ export class AppComponent implements AfterViewInit, OnInit{
       }
     });
 
-    this.servicioUsuario.getEstaLogueado$().subscribe(
-      esta => {
-        this.estaLogueado = esta;
-      });
+    this.servicioUsuario.getEstaLogueado$().subscribe(esta => {
+      this.estaLogueado = esta;
+    });
 
     this.servicioUsuario.getUsuarioLogueado$().subscribe(
       usuario => {
@@ -48,8 +50,23 @@ export class AppComponent implements AfterViewInit, OnInit{
       });
   }
 
+  abrirModal = false;
+
+  openFormModal(){
+    this.abrirModal = true;
+  }
+
   logout(){
     this.servicioUsuario.setEstaLogueado$(false);
+    this.servicioUsuario.salir()
+    .then(response => {
+      console.log(response);
+      this.estaLogueado = false;
+      localStorage.removeItem('usuario');
+    })
+    .catch(error => {
+      console.log(error);
+    })
   }
 }
 

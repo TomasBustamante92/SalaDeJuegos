@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { DataServices } from 'src/app/data.services';
+import { TecladoService } from 'src/app/services/teclado.service';
 
 @Component({
   selector: 'app-teclado',
@@ -8,11 +8,11 @@ import { DataServices } from 'src/app/data.services';
 })
 export class TecladoComponent {
  
-  constructor(private dataService:DataServices){  }
+  constructor(private tecladoService:TecladoService){  }
   
   @Output() letraPresionada = new EventEmitter<string>();
 
-  letrasUsadasArray = this.dataService.letrasUsadasArray;
+  letrasUsadasArray = this.tecladoService.letrasUsadasArray;
 
   teclado(letra:string){
 
@@ -20,7 +20,7 @@ export class TecladoComponent {
 
     this.letrasUsadasArray.forEach(value => {
       
-      this.dataService.letrasIncorrectas.forEach(l => {
+      this.tecladoService.letrasIncorrectas.forEach(l => {
 
         if(l == value.key){
           value.value = true;

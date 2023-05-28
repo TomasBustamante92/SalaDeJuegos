@@ -1,0 +1,88 @@
+
+<!-- PopUp -->
+<div class="modal fade" id="colorModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content text-bg-dark" style="text-align: center;">
+        <div class="modal-body">
+          
+            <h2>{{popUpTitulo}}</h2>
+
+            <div *ngIf="esPopUpColor">
+                <div>
+                <button type="button" (click)="cerrarElegirColor('rojo')" class="btn btn-dark"><img id="background" height="40" width="40" src="{{colores.rojo}}"/></button>
+                <button type="button" (click)="cerrarElegirColor('azul')" class="btn btn-dark"><img id="background" height="40" width="40" src="{{colores.azul}}"/></button>
+                <button type="button" (click)="cerrarElegirColor('amarillo')" class="btn btn-dark"><img id="background" height="40" width="40" src="{{colores.amarillo}}"/></button>
+                <button type="button" (click)="cerrarElegirColor('violeta')" class="btn btn-dark"><img id="background" height="40" width="40" src="{{colores.violeta}}"/></button>
+                <button type="button" (click)="cerrarElegirColor('verde')" class="btn btn-dark"><img id="background" height="40" width="40" src="{{colores.verde}}"/></button>
+                </div>
+            </div>
+
+            <div *ngIf="!esPopUpColor">
+                <p style="white-space: pre-line">{{popUpMensaje}}</p>
+
+                <div *ngIf="!finDeJuego">
+                    <div *ngIf="compraCasa">
+                        <button type="button" (click)="comprarCasa()" class="btn btn-success">Comprar casa</button>
+                        <br><br>
+                    </div>
+                    <button type="button" (click)="cerrarPopUp()" class="btn btn-outline-light">Cerrar</button>
+                </div>
+                <div *ngIf="finDeJuego">
+                    <button type="button" (click)="volverAJugar()" class="btn btn-primary">Jugar</button>
+                    <button type="button" class="btn btn-warning">Salir</button>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+</div>
+<!-- PopUp -->
+
+<!-- Boton Volver -->
+<div style="text-align: right;">
+    <button class="btn btn-warning" routerLink="">Volver</button>
+</div>
+<!-- Boton Volver -->
+  
+<div class="container">
+    <div class="row">
+        <!-- Info Jugadores -->
+        <div class="col-md-4 order-md-2 mb-4">
+            <div class="text-light">
+                <h1 class="text-center" [ngStyle]="{'color': colorJugadores[0]}"><b>Jugador 1 </b></h1>
+                <h1 class="text-center">${{montoJugadores[0]}}</h1>
+                <ul class="list-group" style="text-align: center;">
+                    <li class="list-group-item" *ngFor="let propiedad of propiedadesJugador1">{{propiedad}}</li>
+                </ul>
+            </div>
+            <br><br><br>
+            <div class="text-light">
+                <h1 class="text-center" [ngStyle]="{'color': colorJugadores[1]}"><b>Jugador 2 </b></h1>
+                <h1 class="text-center">${{montoJugadores[1]}}</h1>
+                <ul class="list-group" style="text-align: center;">
+                    <li class="list-group-item" *ngFor="let propiedad of propiedadesJugador2">{{propiedad}}</li>
+                </ul>
+            </div>
+        </div>
+        <!-- Info Jugadores -->
+
+        <!-- MAIN -->
+        <div class="col-md-8 order-md-1">
+            <div id="main" class="main">
+                <img class="position-relative" id="background" height="700" src="/assets/monopoly/background.png"/>
+                <div id="display">
+                    <img id="background" [ngStyle]="{'top': jugadorVertice[0].altura, 'left': jugadorVertice[0].lado}" height="40" width="40" class="jugador" src="{{puntos[0]}}"/>
+                    <img id="background" [ngStyle]="{'top': jugadorVertice[1].altura, 'left': jugadorVertice[1].lado}" height="40" width="40" class="jugador" src="{{puntos[1]}}"/>
+                    <img type="button" (click)="jugar(0)" id="background" style="top: -300px; left: -10px" height="70" width="70" class="dado" src="{{dadosElegidos[0]}}"/>
+                    <img type="button" (click)="jugar(0)" id="background" style="top: -380px; left: 30px" height="70" width="70" class="dado" src="{{dadosElegidos[1]}}"/>
+                    <button *ngIf="!puedeJugar" (click)="jugar(1)" class="btn btn-dark btn-lg dado" style="top: -220px; left: -60px">Terminar <br>Turno</button> 
+                </div>
+            </div> 
+        </div>
+        <!-- MAIN -->
+    </div>
+</div>
+
+
+
+ 

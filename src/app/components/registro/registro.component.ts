@@ -36,12 +36,34 @@ export class RegistroComponent {
       return null;
     }
 
-    let routerAux = this.router;
-    let usuarioAux = new Usuario("", this.nombreUsuario, this.mail, this.password);
-    this.miServicio.cargarUsuario(usuarioAux);
+    this.registrarAuth(); 
 
-    routerAux.navigateByUrl("Login", { state: {usuario: usuarioAux}});
     return null;
+  }
+
+  registrarAuth(){
+    this.miServicio.registrarse(this.mail,this.password)
+    .then(response => {
+      let routerAux = this.router;
+      let usuarioAux = new Usuario("", this.nombreUsuario, this.mail, this.password);
+      this.miServicio.cargarUsuario(usuarioAux);
+      this.miServicio.setEstaLogueado$(true);
+      this.miServicio.setUsuarioLogueado(usuarioAux);
+      localStorage.setItem('usuario',JSON.stringify(response.user));
+      routerAux.navigateByUrl("");
+
+    })
+    .catch(error => {
+      if(error == "FirebaseError: Firebase: Error (auth/invalid-email)."){
+        this.mensajeError = "Mail con formato invalido";
+      }
+      else if(error = "FirebaseError: Firebase: Password should be at least 6 characters (auth/weak-password)."){
+        this.mensajeError = "Contraseña debe ser minimo 6 caracteres";
+      }
+      else{
+        this.mensajeError = error;
+      }
+    });
   }
 
   estaUsuarioEnBaseDeDatos(){

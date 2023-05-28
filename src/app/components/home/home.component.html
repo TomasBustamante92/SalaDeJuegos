@@ -1,3 +1,27 @@
+   
+
+<!--Pop Up-->
+<div
+  class="modal fade"
+  id="myModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+
+<div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content h-100 p-5 text-bg-dark rounded-3" style="text-align: center;">
+      <h2>{{tipoDeJuego}}</h2>
+      <p style="white-space: pre-line">{{popUpMensaje}}</p>
+      <button  *ngIf="botonLink" (click)="irAQuienSoy()" class="btn btn-outline-light">Ir a ¿Quien soy?</button>
+      <br>
+      <button type="button" (click)="cerrarPopUp()" class="btn btn-outline-light">Cerrar</button>
+    </div>
+</div>
+
+</div>
+
+
 
 <div class="white" style="text-align: center;">
     <div *ngIf="!logueado">
@@ -17,23 +41,26 @@
             
             
             <main>
-            <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+            <div class="row row-cols-1 row-cols-md-2 mb-2 text-center">
                 <div class="col">
                     <div class="card mb-4 rounded-3 shadow-sm text-bg-dark" style="color: black;">
                         <div class="card-header py-3">
-                        <br>
-                        <h4 class="my-0 fw-normal">Ahorcado</h4>
-                        <br>
-                        <img class="imagen" src="https://cdn-icons-png.flaticon.com/512/3274/3274156.png">
-                        <br>
-                        <br>
+                            <br>
+                            <h4 class="my-0 fw-normal">Ahorcado</h4>
+                            <br>
+                            <img class="imagen" src="https://cdn-icons-png.flaticon.com/512/3274/3274156.png">
+                            <br>
+                            <br>
 
-                        <button type="button" routerLink="Juegos/Ahorcado" class="w-100 btn btn-lg btn-primary">Jugar</button>
+                            <div class="btn-group">
+                                <button type="button" (click)="abrirPopUp('ahorcado')" class="w-100 btn btn-lg btn-warning">Ayuda</button>
+                                <button type="button" routerLink="Juegos/Ahorcado" class="w-100 btn btn-lg btn-primary">Jugar</button>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="col">
-                    <div class="card mb-4 rounded-3 shadow-sm text-bg-dark" style="color: black;">
+                    <div class="card mb-4 rounded-2 shadow-sm text-bg-dark" style="color: black;">
                         <div class="card-header py-3">               
                         <br>             
                         <h4 class="my-0 fw-normal">Mayor o Menor</h4>
@@ -41,15 +68,42 @@
                         <img class="imagen" src="https://media.istockphoto.com/id/1219076346/vector/playing-cards-flat.jpg?s=612x612&w=0&k=20&c=gQ3_rCIoZjwB4FzkXmiAgJaeM2hHKleEdlBB2tOsoAU=">
                         <br>
                         <br>
-                        <button type="button"  class="w-100 btn btn-lg btn-primary">Jugar</button>
+                        <div class="btn-group">
+                            <button type="button" (click)="abrirPopUp('mayorMenor')" class="w-100 btn btn-lg btn-warning">Ayuda</button>
+                            <button type="button" routerLink="Juegos/MayorMenor" class="w-100 btn btn-lg btn-primary">Jugar</button>
+                        </div>
                         </div>
                     </div>
                 </div>
                 <div class="col">
-                    <div class="card mb-4 rounded-3 shadow-sm text-bg-dark" style="color: black;">
+                    <div class="card mb-4 rounded-2 shadow-sm text-bg-dark" style="color: black;">
                         <div class="card-header py-3">
-                        <h4 class="my-0 fw-normal">Proximamente</h4>
+                        <h4 class="my-0 fw-normal">Preguntados</h4>
+                        <br>
+                        <img class="imagen" src="data:image/png;base64,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">
+                        <br>
+                        <br>  
+                        <div class="btn-group">
+                            <button type="button" (click)="abrirPopUp('preguntados')" class="w-100 btn btn-lg btn-warning">Ayuda</button>
+                            <button type="button" routerLink="Juegos/Preguntados" class="w-100 btn btn-lg btn-primary">Jugar</button>
+                        </div>                  
+                        </div>
+                        
                     
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card mb-4 rounded-2 shadow-sm text-bg-dark" style="color: black;">
+                        <div class="card-header py-3">
+                        <h4 class="my-0 fw-normal">Monopoly</h4>
+                        <br>
+                        <img class="imagen" src="https://espaciodeartemanongo.files.wordpress.com/2013/10/logo-mr-monopoly.jpg?w=400">
+                        <br>
+                        <br>  
+                        <div class="btn-group">
+                            <button type="button" (click)="abrirPopUp('monopoly')" class="w-100 btn btn-lg btn-warning">Ayuda</button>
+                            <button type="button" routerLink="Juegos/Monopoly" class="w-100 btn btn-lg btn-primary">Jugar</button>
+                        </div>                  
                         </div>
                     </div>
                 </div>

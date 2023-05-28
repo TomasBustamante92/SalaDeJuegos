@@ -87,7 +87,7 @@ h1 {
   .key--letter--wrong {
     line-height: 2.8em;
     position: relative;
-    background: #690101;
+    background: #999999;
     text-align: center;
     color: #eee;
     float: left;
@@ -98,9 +98,9 @@ h1 {
     height: 100%;
     box-sizing: border-box;
     cursor: pointer;
-    border: 1px solid #220000;
-    box-shadow: 0 0.2em 0 0.05em #290000;
-    border-bottom-color: #fd6f6f;
+    border: 1px solid #5a5a5a;
+    box-shadow: 0 0.2em 0 0.05em #515151;
+    border-bottom-color: #d2d2d2;
   }
   
   .key--bottom-left > * {

@@ -1,0 +1,29 @@
+
+
+<div style="text-align: right;">
+    <button class="btn btn-warning" routerLink="">Volver</button>
+</div>
+
+<div class="white" style="text-align: center;">
+    <br>
+    <div class="btn-group">
+        <img class="imagen" src="{{mazo}}">
+        <p style="color: transparent;">____</p>
+        <img class="imagen" src="{{cartaRandom}}">
+    </div>
+    <br>
+    <br>
+    <div class="btn-group">
+        <button class="btn btn-success" (click)="cartaNueva('menor')">Bajo</button> 
+        <button class="btn btn-warning" (click)="cartaNueva('iguales')">Igual</button> 
+        <button class="btn btn-danger" (click)="cartaNueva('mayor')">Alta</button> 
+    </div>
+    <br>
+    <br>
+    Puntos: {{puntos}}
+    <br>
+    Cartas restantes: {{cartasRestantes}}
+    <br> 
+    <br>
+    <button class="btn btn-primary" *ngIf="juegoTerminado" (click)="volverAJugar()">Volver a Jugar</button>
+</div>

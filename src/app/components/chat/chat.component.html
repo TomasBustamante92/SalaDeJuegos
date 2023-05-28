@@ -17,7 +17,9 @@
     <div class="p-5 mb-6 bg-body-tertiary text-bg-dark rounded-3">
         <input [(ngModel)]="texto" class="form-control"/>
         <br>
-        <button class="btn btn-primary" (click)="publicarMensaje()">Publicar mensaje</button> 
+        <button class="btn btn-primary" (ngModelChange)="resetearMensajeError()" (click)="publicarMensaje()">Publicar mensaje</button> 
+        <br>
+        <p style="color: red;">{{mensajeError}}</p>
     </div>
     
     </div>

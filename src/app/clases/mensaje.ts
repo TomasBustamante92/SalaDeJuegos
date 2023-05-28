@@ -1,12 +1,13 @@
 export class Mensaje {
+    id:number
     autor:string;
     mensaje:string;
     fecha:string;
 
-    constructor(autor:string, mensaje:string){
+    constructor(id:number, autor:string, mensaje:string, fecha:string){
+        this.id = id;
         this.autor = autor;
         this.mensaje = mensaje;
-        let fechaAux = new Date();
-        this.fecha = fechaAux.getHours() + ":" + fechaAux.getMinutes() + " - " + fechaAux.getDay() + "/" + fechaAux.getMonth() + "/" + fechaAux.getFullYear();
+        this.fecha = fecha;
     }
 }

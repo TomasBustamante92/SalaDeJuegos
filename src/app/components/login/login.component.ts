@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Usuario } from 'src/app/clases/usuario';
+import { SpinnerService } from 'src/app/services/spinner.service';
 import { ServicioUsuariosService } from 'src/app/servicio-usuarios.service';
 
 @Component({
@@ -14,15 +15,12 @@ export class LoginComponent implements OnInit {
   nombreUsuario = "";
   mensajeError = "";
   usuario: Usuario;
+  usuarioEncontrado:boolean = false;
 
-  constructor(private usuarioServ:ServicioUsuariosService, private router: Router) {}
+  constructor(private usuarioServ:ServicioUsuariosService, private router: Router, private spinner:SpinnerService) {}
   
   ngOnInit(): void {
-
-    if(history.state.usuario != null){
-      this.usuario = history.state.usuario;
-      this.ingreso();
-    }
+    this.usuarioEncontrado = false;
   }
 
   resetearMensajeError(){
@@ -30,24 +28,32 @@ export class LoginComponent implements OnInit {
   }
 
   ingresarUsuario(){
-
     if(this.mail == "" || this.password == ""){
       this.mensajeError = "Complete todos los campos";
       return null;
     }
-
     this.usuarioServ.usuarios.forEach((usuario) => {
-
       if(this.mail == usuario.mail && this.password == usuario.password){
-        
+        this.usuarioEncontrado = true;
         this.usuario = new Usuario(usuario.id,usuario.nombreUsuario, usuario.mail, usuario.password);
         this.nombreUsuario = usuario.nombreUsuario;
-        this.ingreso();
+        this.ingresarAuth();
       }
     });
 
-    this.mensajeError = "Usuario o contraseña incorrectos";
+    if(!this.usuarioEncontrado){
+      this.mensajeError = "Usuario o contraseña incorrectos";
+    }
     return null;
+  }
+
+  ingresarAuth(){
+    this.usuarioServ.ingresar(this.usuario.mail,this.usuario.password)
+    .then(response => {
+      localStorage.setItem('usuario',JSON.stringify(response.user));
+      this.ingreso();
+    })
+    .catch(error => console.log(error));
   }
 
   ingreso(){

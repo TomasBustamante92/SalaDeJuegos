@@ -1,0 +1,57 @@
+
+
+
+
+<div class="modal fade" id="colorModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content text-bg-dark" style="text-align: center;">
+        <div class="modal-body">
+          
+            <h2>{{popUpTitulo}}</h2>
+            <p style="white-space: pre-line">{{popUpMensaje}}</p>
+
+            <button type="button" *ngIf="!estaJugando" (click)="volverAJugar()" class="btn btn-success">Volver a jugar</button>
+            <br>
+            <button type="button" *ngIf="!estaJugando" (click)="salir()" class="btn btn-outline-light">Salir</button>
+            <button type="button" *ngIf="estaJugando" (click)="cerrarPopUp()" class="btn btn-outline-light">Cerrar</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+<div style="text-align: right;">
+    <button class="btn btn-warning" routerLink="">Volver</button>
+</div>
+
+  
+
+
+<div class="d-flex gap-5 justify-content-center py-7">
+  <span class="badge d-flex p-4 align-items-center text-bg-success rounded-pill">
+    <h2 class="px-1">Puntaje: {{puntaje}}</h2>
+  </span>
+  <span class="badge d-flex p-4 align-items-center text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-pill">
+    <h2 class="px-1">Intentos: {{intentos}}</h2>
+  </span>
+</div>
+
+
+<br><br><br>
+
+<div class="container">
+	<div class="table white">
+		<div style="text-align: center;">
+			<h1>Bandera</h1>
+            <img src="{{banderaElegida$}}" style="width: 200px;">
+		</div>
+        <br>
+        <br>
+		<div style="text-align: center;" *ngFor="let pais of opciones">
+            <button type="button" (click)="elegirPais(pais)" class="btn btn-dark">{{pais}}</button>
+            <br>
+            <br>
+        </div>
+		
+	</div>
+</div>
+
