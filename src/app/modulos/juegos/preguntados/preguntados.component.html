@@ -10,7 +10,7 @@
             <h2>{{popUpTitulo}}</h2>
             <p style="white-space: pre-line">{{popUpMensaje}}</p>
 
-            <button type="button" *ngIf="!estaJugando" (click)="volverAJugar()" class="btn btn-success">Volver a jugar</button>
+            <button type="button" *ngIf="!estaJugando && volverAJugarBool" (click)="volverAJugar()" class="btn btn-success">Volver a jugar</button>
             <br>
             <button type="button" *ngIf="!estaJugando" (click)="salir()" class="btn btn-outline-light">Salir</button>
             <button type="button" *ngIf="estaJugando" (click)="cerrarPopUp()" class="btn btn-outline-light">Cerrar</button>

@@ -24,9 +24,13 @@ export class PreguntadosComponent implements OnInit {
   puntaje = 0;
   intentos = 0;
   estaJugando = true;
+  volverAJugarBool = true;
+  spinerAndando = false;
 
   ngOnInit(): void {
+    this.volverAJugarBool = true;
     this.spinner.llamarSpinner();
+    this.spinerAndando = true;
     this.formModal = new window.bootstrap.Modal(
       document.getElementById('colorModal')
     );
@@ -39,8 +43,18 @@ export class PreguntadosComponent implements OnInit {
       })
       this.elegirNuevoPais();
       this.spinner.detenerSpinner();
+      this.spinerAndando = false;
     });
 
+    setTimeout(()=>{ 
+      if(this.spinerAndando){
+        this.volverAJugarBool = false;
+        this.spinerAndando = false;
+        this.estaJugando = false;
+        this.abrirPopUp("Error 503", "No pudimos cargar los paises \nIntentelo nuevamente mas tarde");
+        this.spinner.detenerSpinner();
+      }
+    },3000);
   }
 
   elegirPais(pais:string){
