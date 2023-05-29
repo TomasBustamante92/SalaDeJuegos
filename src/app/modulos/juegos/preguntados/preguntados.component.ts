@@ -15,7 +15,6 @@ export class PreguntadosComponent implements OnInit {
   constructor(private router: Router,private spinner:SpinnerService, private pokemonService:PokemonService){}
   pokemonNombreElegido:string;
   pokemonFotoElegido:string;
-  opciones:string[] = ["","","",""];
   formModal:any;
   popUpTitulo = "";
   popUpMensaje = "";
@@ -73,6 +72,7 @@ export class PreguntadosComponent implements OnInit {
     this.pokemones = [];
     this.pokemonesFotos = [];
     this.pokemonNombreElegido = "";
+    let random = this.getNumeroRandom(4);
 
     for(let i=0 ; i<4 ; i++){
       this.pokemonService.getPokemon$(this.getNumeroRandom(151)).subscribe(pokemon => {
@@ -83,30 +83,27 @@ export class PreguntadosComponent implements OnInit {
           this.pokemonNombreElegido = Object.values(pokemon)[2][0].name;
           this.pokemonFotoElegido = Object.values(pokemon)[14].other.dream_world.front_default;
         }
+        if(this.pokemones.length == 4){
+          this.ordernarPokemonesRandom(this.pokemones);
+        }
         this.spinner.detenerSpinner();
       });
     }  
-    
-    let random = this.getNumeroRandom(4);
-    this.opciones = ["","","",""];
-    let pokemonSeleccionado = false;
-
-    do{
-      let posicion = this.getNumeroRandom(4);
-
-      if(this.opciones[posicion] == ""){
-        if(!pokemonSeleccionado){
-          pokemonSeleccionado = true;
-          this.opciones[posicion] = this.pokemones[random];
-        }
-        else{
-          this.opciones[posicion] = this.pokemones[this.getNumeroRandom(4)];
-        }
-      }
-      
-    }while(this.opciones[0] == "" || this.opciones[1] == "" || this.opciones[2] == "" || this.opciones[3] == "") 
 
     this.timeOut();
+  }
+
+  ordernarPokemonesRandom(array:string[]) {
+    let currentIndex = array.length,  randomIndex;
+    while (currentIndex != 0) {
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+  
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex], array[currentIndex]];
+    }
+  
+    return array;
   }
 
   timeOut(){
